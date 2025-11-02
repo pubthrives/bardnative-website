@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* --- BardNative Custom Styles --- */
+@layer components {
+  .bn-container {
+    @apply max-w-6xl mx-auto px-4;
+  }
+
+  .bn-btn {
+    @apply inline-block px-6 py-3 rounded-lg font-semibold transition;
+  }
+
+  .bn-btn-dark {
+    @apply bg-black text-white hover:bg-gray-800;
+  }
+
+  .bn-btn-outline {
+    @apply border border-black text-black hover:bg-black hover:text-white;
+  }
+}
+
+@keyframes pulse-slow {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+.animate-pulse-slow {
+  animation: pulse-slow 6s ease-in-out infinite;
+}
