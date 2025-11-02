@@ -12,7 +12,7 @@ export default function Header() {
   useEffect(() => {
     document.title = "BardNative — Smarter Ad Monetization for Publishers";
 
-    // ✅ Meta Description (only add if missing)
+    // ✅ Meta Description
     const metaDescription = document.querySelector('meta[name="description"]');
     if (!metaDescription) {
       const desc = document.createElement("meta");
@@ -32,17 +32,18 @@ export default function Header() {
       document.head.appendChild(keywords);
     }
 
-    // ✅ Add favicon dynamically (only if missing)
+    // ✅ Add favicon dynamically
     const existingFavicon = document.querySelector("link[rel='icon']");
     if (!existingFavicon) {
       const link = document.createElement("link");
       link.rel = "icon";
       link.type = "image/png";
-      link.href = "/favicon.png"; // Use your real favicon name from public folder
+      link.href = "/favicon.png"; // ✅ Use favicon from public folder
       document.head.appendChild(link);
     }
   }, []);
 
+  // ✅ Handle Navigation Click
   const handleNavClick = (id: string) => {
     setIsOpen(false);
     if (location.pathname !== "/") {
@@ -55,21 +56,20 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 bg-white border-b border-gray-200">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 flex items-center justify-between h-24">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 flex items-center justify-between h-20 md:h-22">
         {/* ===== Logo ===== */}
         <a href="/" className="flex items-center">
-  <img
-    src="/logo.jpeg"
-    alt="BardNative Logo"
-    width="120"
-    height="40"
-    loading="eager"
-    fetchPriority="high"
-    className="h-10 w-auto md:h-12 object-contain transition-transform duration-300 hover:scale-105"
-  />
-</a>
+          <img
+            src="/logo.jpeg"
+            alt="BardNative Logo"
+            loading="eager"
+            fetchPriority="high"
+            className="h-10 md:h-12 w-auto object-contain transition-transform duration-300 hover:scale-105"
+            style={{ maxHeight: "48px" }}
+          />
+        </a>
 
-        {/* ===== Desktop Nav ===== */}
+        {/* ===== Desktop Navigation ===== */}
         <nav className="hidden md:flex space-x-10 font-medium text-gray-700">
           <a
             onClick={() => handleNavClick("/")}
@@ -100,7 +100,7 @@ export default function Header() {
           </a>
         </nav>
 
-        {/* ===== CTA (Desktop) ===== */}
+        {/* ===== CTA Button (Desktop) ===== */}
         <a
           href="/start"
           className="hidden md:inline-block px-6 py-2.5 rounded-lg text-sm font-semibold text-white 
@@ -119,9 +119,9 @@ export default function Header() {
         </button>
       </div>
 
-      {/* ===== Mobile Dropdown ===== */}
+      {/* ===== Mobile Dropdown Menu ===== */}
       {isOpen && (
-        <div className="md:hidden absolute top-24 left-0 w-full bg-white border-t border-gray-200 shadow-xl rounded-b-2xl animate-slideDown">
+        <div className="md:hidden absolute top-20 left-0 w-full bg-white border-t border-gray-200 shadow-xl rounded-b-2xl animate-slideDown">
           <nav className="flex flex-col items-center py-6 space-y-4 text-gray-800 font-medium">
             <a
               href="/"
@@ -168,7 +168,7 @@ export default function Header() {
               href="/start"
               onClick={() => setIsOpen(false)}
               className="mt-4 px-6 py-2.5 rounded-lg text-sm font-semibold text-white 
-                         bg-[#1E3A8A] shadow-md transition-all"
+                         bg-[#1E3A8A] shadow-md hover:bg-[#1E40AF] transition-all"
             >
               Start Monetization
             </a>
