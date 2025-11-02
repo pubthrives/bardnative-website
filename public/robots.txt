@@ -1,0 +1,11 @@
+# ✅ robots.txt for BardNative
+User-agent: *
+Allow: /
+
+# Disallow private or dev pages
+Disallow: /admin
+Disallow: /api
+Disallow: /temp
+
+# Sitemap for search engines
+Sitemap: https://bardnative-website.vercel.app/sitemap.xml

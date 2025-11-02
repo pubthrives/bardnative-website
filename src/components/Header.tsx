@@ -38,12 +38,12 @@ export default function Header() {
       const link = document.createElement("link");
       link.rel = "icon";
       link.type = "image/png";
-      link.href = "/favicon.png"; // ✅ Use favicon from public folder
+      link.href = "/favicon.png"; // favicon from public folder
       document.head.appendChild(link);
     }
   }, []);
 
-  // ✅ Handle Navigation Click
+  // ✅ Handle Navigation Click (scroll or navigate)
   const handleNavClick = (id: string) => {
     setIsOpen(false);
     if (location.pathname !== "/") {
@@ -72,8 +72,9 @@ export default function Header() {
         {/* ===== Desktop Navigation ===== */}
         <nav className="hidden md:flex space-x-10 font-medium text-gray-700">
           <a
+            href="/"
             onClick={() => handleNavClick("/")}
-            className="cursor-pointer hover:text-[#1E3A8A] transition"
+            className="hover:text-[#1E3A8A] transition"
           >
             Home
           </a>
@@ -81,14 +82,16 @@ export default function Header() {
             About
           </a>
           <a
+            href="/#partners"
             onClick={() => handleNavClick("partners")}
-            className="cursor-pointer hover:text-[#1E3A8A] transition"
+            className="hover:text-[#1E3A8A] transition"
           >
             Partners
           </a>
           <a
+            href="/#solutions"
             onClick={() => handleNavClick("solutions")}
-            className="cursor-pointer hover:text-[#1E3A8A] transition"
+            className="hover:text-[#1E3A8A] transition"
           >
             Solutions
           </a>
@@ -138,14 +141,22 @@ export default function Header() {
               About
             </a>
             <a
-              onClick={() => handleNavClick("partners")}
-              className="cursor-pointer hover:text-[#1E3A8A] transition"
+              href="/#partners"
+              onClick={() => {
+                handleNavClick("partners");
+                setIsOpen(false);
+              }}
+              className="hover:text-[#1E3A8A] transition"
             >
               Partners
             </a>
             <a
-              onClick={() => handleNavClick("solutions")}
-              className="cursor-pointer hover:text-[#1E3A8A] transition"
+              href="/#solutions"
+              onClick={() => {
+                handleNavClick("solutions");
+                setIsOpen(false);
+              }}
+              className="hover:text-[#1E3A8A] transition"
             >
               Solutions
             </a>
@@ -163,7 +174,6 @@ export default function Header() {
             >
               Contact
             </a>
-
             <a
               href="/start"
               onClick={() => setIsOpen(false)}
