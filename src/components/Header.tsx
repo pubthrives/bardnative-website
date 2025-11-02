@@ -43,9 +43,8 @@ export default function Header() {
     }
   }, []);
 
-  // ✅ Handle Navigation Click (scroll or navigate)
-  const handleNavClick = (id: string) => {
-    setIsOpen(false);
+  // ✅ Smooth Scroll Handler
+  const handleScroll = (id: string) => {
     if (location.pathname !== "/") {
       navigate("/");
       setTimeout(() => scrollToSection(id), 300);
@@ -73,7 +72,10 @@ export default function Header() {
         <nav className="hidden md:flex space-x-10 font-medium text-gray-700">
           <a
             href="/"
-            onClick={() => handleNavClick("/")}
+            onClick={(e) => {
+              e.preventDefault();
+              handleScroll("/");
+            }}
             className="hover:text-[#1E3A8A] transition"
           >
             Home
@@ -83,19 +85,25 @@ export default function Header() {
           </a>
           <a
             href="/#partners"
-            onClick={() => handleNavClick("partners")}
+            onClick={(e) => {
+              e.preventDefault();
+              handleScroll("partners");
+            }}
             className="hover:text-[#1E3A8A] transition"
           >
             Partners
           </a>
           <a
             href="/#solutions"
-            onClick={() => handleNavClick("solutions")}
+            onClick={(e) => {
+              e.preventDefault();
+              handleScroll("solutions");
+            }}
             className="hover:text-[#1E3A8A] transition"
           >
             Solutions
           </a>
-          <a href="/Affiliate" className="hover:text-[#1E3A8A] transition">
+          <a href="/affiliate" className="hover:text-[#1E3A8A] transition">
             Affiliate
           </a>
           <a href="/contact" className="hover:text-[#1E3A8A] transition">
@@ -143,7 +151,7 @@ export default function Header() {
             <a
               href="/#partners"
               onClick={() => {
-                handleNavClick("partners");
+                handleScroll("partners");
                 setIsOpen(false);
               }}
               className="hover:text-[#1E3A8A] transition"
@@ -153,7 +161,7 @@ export default function Header() {
             <a
               href="/#solutions"
               onClick={() => {
-                handleNavClick("solutions");
+                handleScroll("solutions");
                 setIsOpen(false);
               }}
               className="hover:text-[#1E3A8A] transition"
@@ -161,7 +169,7 @@ export default function Header() {
               Solutions
             </a>
             <a
-              href="/Affiliate"
+              href="/affiliate"
               onClick={() => setIsOpen(false)}
               className="hover:text-[#1E3A8A] transition"
             >
