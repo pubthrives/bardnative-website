@@ -12,6 +12,7 @@ export default function Header() {
   useEffect(() => {
     document.title = "BardNative — Smarter Ad Monetization for Publishers";
 
+    // ✅ Meta Description (only add if missing)
     const metaDescription = document.querySelector('meta[name="description"]');
     if (!metaDescription) {
       const desc = document.createElement("meta");
@@ -21,19 +22,23 @@ export default function Header() {
       document.head.appendChild(desc);
     }
 
-    const metaKeywords = document.createElement("meta");
-    metaKeywords.name = "keywords";
-    metaKeywords.content =
-      "BardNative, ad monetization, Google Ad Manager, publisher ads, website monetization, digital ads, ad revenue optimization, Bard Native";
-    document.head.appendChild(metaKeywords);
+    // ✅ Meta Keywords
+    const metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (!metaKeywords) {
+      const keywords = document.createElement("meta");
+      keywords.name = "keywords";
+      keywords.content =
+        "BardNative, ad monetization, Google Ad Manager, publisher ads, website monetization, digital ads, ad revenue optimization, Bard Native";
+      document.head.appendChild(keywords);
+    }
 
-    // ✅ Add favicon dynamically
+    // ✅ Add favicon dynamically (only if missing)
     const existingFavicon = document.querySelector("link[rel='icon']");
     if (!existingFavicon) {
       const link = document.createElement("link");
       link.rel = "icon";
-      link.type = "image/jpeg";
-      link.href = "/logo2.jpeg"; // Use your existing logo file
+      link.type = "image/png";
+      link.href = "/favicon.png"; // Use your real favicon name from public folder
       document.head.appendChild(link);
     }
   }, []);
@@ -53,12 +58,16 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-6 sm:px-8 flex items-center justify-between h-24">
         {/* ===== Logo ===== */}
         <a href="/" className="flex items-center">
-          <img
-            src="/logo.jpeg"
-            alt="BardNative Logo"
-            className="w-24 h-24 md:w-28 md:h-28 object-contain transition-transform duration-300 hover:scale-105"
-          />
-        </a>
+  <img
+    src="/logo.jpeg"
+    alt="BardNative Logo"
+    width="120"
+    height="40"
+    loading="eager"
+    fetchPriority="high"
+    className="h-10 w-auto md:h-12 object-contain transition-transform duration-300 hover:scale-105"
+  />
+</a>
 
         {/* ===== Desktop Nav ===== */}
         <nav className="hidden md:flex space-x-10 font-medium text-gray-700">
