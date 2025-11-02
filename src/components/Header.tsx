@@ -54,7 +54,7 @@ export default function Header() {
         {/* ===== Logo ===== */}
         <a href="/" className="flex items-center">
           <img
-            src="dist/assets/logo2.png"
+            src="/logo.jpeg"
             alt="BardNative Logo"
             className="w-24 h-24 md:w-28 md:h-28 object-contain transition-transform duration-300 hover:scale-105"
           />
