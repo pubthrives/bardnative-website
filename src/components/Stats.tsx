@@ -19,49 +19,55 @@ const stats = [
   {
     icon: <BarChart className="w-8 h-8 text-pink-600" />,
     value: "95%+",
-    label: "Average Fill Rate",
+    label: "Avg Fill Rate",
   },
 ];
 
 export default function Stats() {
   return (
-    <section className="relative bg-gradient-to-b from-white via-gray-50 to-white py-24 overflow-hidden border-t border-gray-100">
-      {/* Decorative Grid Background */}
+    <section className="relative bg-gradient-to-b from-white via-gray-50 to-gray-100 py-20 md:py-28 overflow-hidden border-t border-gray-100">
+      {/* Subtle Glow Background */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[400px] h-[400px] md:w-[650px] md:h-[650px] bg-[#0D1B4C]/10 blur-[160px] rounded-full opacity-40"></div>
+
+      {/* Grid Overlay */}
       <div
-        className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.04)_1px,transparent_1px)] bg-[size:50px_50px]"
+        className="absolute inset-0 bg-[linear-gradient(to_right,rgba(13,27,76,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(13,27,76,0.03)_1px,transparent_1px)] bg-[size:60px_60px]"
         aria-hidden="true"
       ></div>
 
-      {/* Glowing Blue Accent */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-[#1E3A8A]/10 blur-3xl rounded-full opacity-50"></div>
-
-      {/* Main Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
+      {/* Content */}
+      <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
         {/* Title */}
         <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
           BardNative{" "}
-          <span className="text-transparent bg-clip-text bg-[#1E3A8A]">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0D1B4C] to-[#142E6E]">
             Performance Insights
           </span>
         </h2>
-        <p className="text-gray-600 text-lg mb-16 max-w-2xl mx-auto">
-          Real results that drive growth for every partner. Our platform ensures
-          higher yields, smarter ads, and faster optimization.
+        <p className="text-gray-600 text-lg max-w-2xl mx-auto mb-14">
+          Proven results that scale. Our technology optimizes every impression to
+          deliver higher yields, smarter ad serving, and consistent revenue growth.
         </p>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {stats.map((s, index) => (
             <div
               key={index}
-              className="group bg-white/90 backdrop-blur-lg p-10 rounded-3xl shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100"
+              className="group bg-white border border-gray-100 rounded-3xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
             >
-              <div className="flex justify-center mb-4">{s.icon}</div>
-              <h3 className="text-3xl font-bold text-gray-900 mb-1">
-                {s.value}
-              </h3>
-              <p className="text-gray-600 text-sm font-medium">{s.label}</p>
-              <div className="mt-4 h-[2px] w-12 mx-auto bg-gradient-to-r from-[#1E3A8A] to-indigo-500 opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+              <div className="flex flex-col items-center justify-center">
+                <div className="mb-3">{s.icon}</div>
+                <h3 className="text-3xl font-bold text-[#0D1B4C]">
+                  {s.value}
+                </h3>
+                <p className="text-gray-600 text-sm font-medium mt-1">
+                  {s.label}
+                </p>
+              </div>
+
+              {/* Accent Line */}
+              <div className="mt-4 h-[2px] w-12 mx-auto bg-gradient-to-r from-[#0D1B4C] to-[#142E6E] opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
             </div>
           ))}
         </div>

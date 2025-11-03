@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* --- BardNative Custom Styles --- */
+/* === BardNative Custom Styles === */
 @layer components {
   .bn-container {
     @apply max-w-6xl mx-auto px-4;
@@ -19,6 +19,43 @@
   .bn-btn-outline {
     @apply border border-black text-black hover:bg-black hover:text-white;
   }
+}
+
+/* === Smooth Pulse Animation (for glowing backgrounds) === */
+@keyframes pulse-slow {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 6s ease-in-out infinite;
+}
+
+/* === Slow Rotating Animation for Globe === */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-spin-slow {
+  animation: spin-slow 25s linear infinite;
 }
 
 @keyframes pulse-slow {

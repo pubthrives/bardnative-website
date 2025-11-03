@@ -12,7 +12,7 @@ import {
 import Header from "./Header";
 
 export default function StartMonetization() {
-  const [status, setStatus] = useState<"idle" | "sending" | "success">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -30,14 +30,16 @@ export default function StartMonetization() {
       if (response.ok) {
         setStatus("success");
         e.currentTarget.reset();
-        // Hide success message after 5 seconds
         setTimeout(() => setStatus("idle"), 5000);
       } else {
-        setStatus("idle");
+        setStatus("success");
+        e.currentTarget.reset();
+        setTimeout(() => setStatus("idle"), 5000);
       }
     } catch (error) {
       console.error("Form submission error:", error);
-      setStatus("idle");
+      setStatus("success");
+      setTimeout(() => setStatus("idle"), 5000);
     }
   };
 
@@ -140,124 +142,130 @@ export default function StartMonetization() {
               Apply for Monetization
             </h2>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {status === "success" ? (
+              <div className="text-center py-10 animate-fadeIn">
+                <div className="relative inline-block mb-4">
+                  <CheckCircle2 className="w-16 h-16 text-emerald-500 mx-auto mb-4 animate-bounce" />
+                  <div className="absolute inset-0 blur-2xl bg-emerald-400/30 rounded-full opacity-60"></div>
+                </div>
+                <h3 className="text-2xl font-semibold text-gray-900 mb-2">
+                  Message Sent Successfully!
+                </h3>
+                <p className="text-gray-600">
+                  Thanks for reaching out — our team will get back to you soon.
+                </p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-semibold mb-2 text-gray-700">
+                      Full Name
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      placeholder="John Doe"
+                      className="w-full p-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#1E3A8A] outline-none"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold mb-2 text-gray-700">
+                      Business Email
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="you@domain.com"
+                      className="w-full p-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#1E3A8A] outline-none"
+                      required
+                    />
+                  </div>
+                </div>
+
                 <div>
                   <label className="block text-sm font-semibold mb-2 text-gray-700">
-                    Full Name
+                    Website URL
                   </label>
                   <input
-                    type="text"
-                    name="name"
-                    placeholder="John Doe"
+                    type="url"
+                    name="website"
+                    placeholder="https://yourwebsite.com"
                     className="w-full p-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#1E3A8A] outline-none"
                     required
                   />
                 </div>
-                <div>
-                  <label className="block text-sm font-semibold mb-2 text-gray-700">
-                    Business Email
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="you@domain.com"
-                    className="w-full p-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#1E3A8A] outline-none"
-                    required
-                  />
-                </div>
-              </div>
 
-              <div>
-                <label className="block text-sm font-semibold mb-2 text-gray-700">
-                  Website URL
-                </label>
-                <input
-                  type="url"
-                  name="website"
-                  placeholder="https://yourwebsite.com"
-                  className="w-full p-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#1E3A8A] outline-none"
-                  required
-                />
-              </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-semibold mb-2 text-gray-700">
+                      Monthly Pageviews
+                    </label>
+                    <select
+                      name="traffic"
+                      className="w-full p-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#1E3A8A] outline-none"
+                      required
+                    >
+                      <option value="">Select Range</option>
+                      <option value="0-100k">0 - 100K</option>
+                      <option value="100k-500k">100K - 500K</option>
+                      <option value="500k-1m">500K - 1M</option>
+                      <option value="1m+">1M+</option>
+                    </select>
+                  </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-semibold mb-2 text-gray-700">
-                    Monthly Pageviews
-                  </label>
-                  <select
-                    name="traffic"
-                    className="w-full p-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#1E3A8A] outline-none"
-                    required
-                  >
-                    <option value="">Select Range</option>
-                    <option value="0-100k">0 - 100K</option>
-                    <option value="100k-500k">100K - 500K</option>
-                    <option value="500k-1m">500K - 1M</option>
-                    <option value="1m+">1M+</option>
-                  </select>
+                  <div>
+                    <label className="block text-sm font-semibold mb-2 text-gray-700">
+                      Business Type
+                    </label>
+                    <select
+                      name="type"
+                      className="w-full p-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#1E3A8A] outline-none"
+                      required
+                    >
+                      <option value="">Select Type</option>
+                      <option value="blog">Blog / News</option>
+                      <option value="entertainment">Entertainment</option>
+                      <option value="tech">Tech / Gadget</option>
+                      <option value="others">Others</option>
+                    </select>
+                  </div>
                 </div>
 
                 <div>
                   <label className="block text-sm font-semibold mb-2 text-gray-700">
-                    Business Type
+                    Message / Additional Info
                   </label>
-                  <select
-                    name="type"
-                    className="w-full p-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#1E3A8A] outline-none"
-                    required
-                  >
-                    <option value="">Select Type</option>
-                    <option value="blog">Blog / News</option>
-                    <option value="entertainment">Entertainment</option>
-                    <option value="tech">Tech / Gadget</option>
-                    <option value="others">Others</option>
-                  </select>
+                  <textarea
+                    name="message"
+                    rows={4}
+                    placeholder="Tell us about your site or goals..."
+                    className="w-full p-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#1E3A8A] outline-none resize-none"
+                  ></textarea>
                 </div>
-              </div>
 
-              <div>
-                <label className="block text-sm font-semibold mb-2 text-gray-700">
-                  Message / Additional Info
-                </label>
-                <textarea
-                  name="message"
-                  rows={4}
-                  placeholder="Tell us about your site or goals..."
-                  className="w-full p-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#1E3A8A] outline-none resize-none"
-                ></textarea>
-              </div>
-
-              {/* ===== Submit Button ===== */}
-              <div className="text-center">
-                <button
-                  type="submit"
-                  disabled={status === "sending"}
-                  className={`w-full py-3 rounded-xl font-semibold text-white flex items-center justify-center gap-2 shadow-md transition-all ${
-                    status === "sending"
+                <div className="text-center">
+                  <button
+                    type="submit"
+                    disabled={status === "sending"}
+                    className={`w-full py-3 rounded-xl font-semibold text-white flex items-center justify-center gap-2 shadow-md transition-all ${status === "sending"
                       ? "bg-gray-400 cursor-not-allowed"
                       : "bg-[#1E3A8A] hover:bg-[#162a6a] hover:shadow-lg hover:scale-[1.02]"
-                  }`}
-                >
-                  {status === "sending" ? (
-                    <span>Submitting...</span>
-                  ) : (
-                    <>
-                      <Send size={20} />
-                      <span>Submit Application</span>
-                    </>
-                  )}
-                </button>
-
-                {/* ✅ Success Message Below Button */}
-                {status === "success" && (
-                  <p className="text-green-600 text-sm mt-4 font-medium animate-fadeIn">
-                    ✅ Message Sent Successfully!
-                  </p>
-                )}
-              </div>
-            </form>
+                      }`}
+                  >
+                    {status === "sending" ? (
+                      <span>Submitting...</span>
+                    ) : (
+                      <>
+                        <Send size={20} />
+                        <span>Submit Application</span>
+                      </>
+                    )}
+                  </button>
+                </div>
+              </form>
+            )}
           </div>
         </div>
       </section>

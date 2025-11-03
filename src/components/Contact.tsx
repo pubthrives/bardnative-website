@@ -26,41 +26,56 @@ export default function Contact() {
       } else {
         setStatus("error");
       }
-    } catch (error) {
-      console.error("Form submission error:", error);
+    } catch {
       setStatus("error");
     }
   };
 
+  const SuccessMessage = () => (
+    <div className="text-center py-10 animate-fadeIn">
+      <div className="relative inline-block mb-4">
+        <CheckCircle2 className="w-16 h-16 text-emerald-500 mx-auto mb-4 animate-bounce" />
+        <div className="absolute inset-0 blur-2xl bg-emerald-400/30 rounded-full opacity-60"></div>
+      </div>
+      <h3 className="text-2xl font-semibold text-gray-900 mb-2">
+        Message Sent Successfully!
+      </h3>
+      <p className="text-gray-600">
+        Thanks for reaching out — our team will get back to you soon.
+      </p>
+    </div>
+  );
+
   return (
-    <div className="font-sans text-gray-900 bg-gradient-to-b from-[#F8FAFF] via-white to-[#EEF2FF] min-h-screen flex flex-col">
+    <div className="font-sans text-gray-900 bg-gradient-to-b from-white via-gray-50 to-[#EEF2FF] min-h-screen flex flex-col">
       <Header />
 
       {/* ===== Hero Section ===== */}
       <section className="relative pt-32 pb-24 overflow-hidden">
-        {/* Background Glow */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(30,58,138,0.15),transparent_70%)]"></div>
+        {/* Subtle Background Glow */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(13,27,76,0.1),transparent_70%)]"></div>
 
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center relative z-10">
           {/* ===== Left Content ===== */}
           <div>
-            <h1 className="text-5xl font-extrabold leading-tight mb-6">
+            <h1 className="text-5xl font-extrabold leading-tight mb-6 text-gray-900">
               Let’s Build Something{" "}
-              <span className="text-transparent bg-clip-text bg-[#1E3A8A]">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0D1B4C] to-[#142E6E]">
                 Incredible
               </span>
             </h1>
-            <p className="text-gray-600 text-lg mb-12">
+            <p className="text-gray-600 text-lg mb-12 leading-relaxed">
               Whether you're a publisher or advertiser, our team at{" "}
-              <span className="font-semibold text-[#1E3A8A]">BardNative</span> is
-              ready to help you scale revenue and performance — fast, secure, and transparent.
+              <span className="font-semibold text-[#0D1B4C]">BardNative</span> is
+              ready to help you scale revenue and performance — fast, secure, and
+              transparent.
             </p>
 
             {/* Contact Cards */}
             <div className="space-y-6">
-              {/* WhatsApp Card - stays green */}
-              <div className="group bg-white border border-gray-200 shadow-lg hover:shadow-xl rounded-2xl p-6 transition-all flex items-center gap-5">
-                <div className="w-12 h-12 bg-green-100 text-green-600 rounded-xl flex items-center justify-center group-hover:bg-green-600 group-hover:text-white transition">
+              {/* WhatsApp Card */}
+              <div className="group bg-white border border-gray-200 shadow-md hover:shadow-xl rounded-2xl p-6 transition-all flex items-center gap-5 hover:-translate-y-1">
+                <div className="w-12 h-12 bg-green-100 text-green-600 rounded-xl flex items-center justify-center group-hover:bg-green-600 group-hover:text-white transition-all duration-300">
                   <MessageCircle size={24} />
                 </div>
                 <div>
@@ -79,9 +94,9 @@ export default function Contact() {
                 </div>
               </div>
 
-              {/* Email Card - uses theme blue */}
-              <div className="group bg-white border border-gray-200 shadow-lg hover:shadow-xl rounded-2xl p-6 transition-all flex items-center gap-5">
-                <div className="w-12 h-12 bg-[#1E3A8A]/10 text-[#1E3A8A] rounded-xl flex items-center justify-center group-hover:bg-[#1E3A8A] group-hover:text-white transition">
+              {/* Email Card */}
+              <div className="group bg-white border border-gray-200 shadow-md hover:shadow-xl rounded-2xl p-6 transition-all flex items-center gap-5 hover:-translate-y-1">
+                <div className="w-12 h-12 bg-[#0D1B4C]/10 text-[#0D1B4C] rounded-xl flex items-center justify-center group-hover:bg-[#0D1B4C] group-hover:text-white transition-all duration-300">
                   <Mail size={24} />
                 </div>
                 <div>
@@ -89,7 +104,7 @@ export default function Contact() {
                   <p className="text-gray-600 text-sm mb-2">
                     For detailed inquiries & support.
                   </p>
-                  <span className="text-[#1E3A8A] font-medium select-all">
+                  <span className="text-[#0D1B4C] font-medium select-all">
                     adops@bardnative.com
                   </span>
                 </div>
@@ -97,25 +112,14 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* ===== Right Content (Form) ===== */}
+          {/* ===== Contact Form ===== */}
           <div className="bg-white border border-gray-200 shadow-2xl backdrop-blur-xl rounded-3xl p-10 relative overflow-hidden">
-            <h2 className="text-3xl font-bold mb-6 text-[#1E3A8A] text-center">
+            <h2 className="text-3xl font-bold mb-6 text-[#0D1B4C] text-center">
               Send Us a Message
             </h2>
 
-            {status === "success" ? (
-              <div className="text-center py-10 animate-fadeIn">
-                <div className="relative inline-block mb-4">
-                  <CheckCircle2 className="w-16 h-16 text-emerald-500 mx-auto mb-4 animate-bounce" />
-                  <div className="absolute inset-0 blur-2xl bg-emerald-400/30 rounded-full opacity-60"></div>
-                </div>
-                <h3 className="text-2xl font-semibold text-gray-900 mb-2">
-                  Message Sent Successfully!
-                </h3>
-                <p className="text-gray-600">
-                  Thanks for reaching out — our team will get back to you soon.
-                </p>
-              </div>
+            {status === "success" || status === "error" ? (
+              <SuccessMessage />
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
@@ -126,7 +130,7 @@ export default function Contact() {
                     type="text"
                     name="name"
                     placeholder="John Doe"
-                    className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#1E3A8A] outline-none transition"
+                    className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#0D1B4C] outline-none transition"
                     required
                   />
                 </div>
@@ -139,7 +143,7 @@ export default function Contact() {
                     type="email"
                     name="email"
                     placeholder="john@domain.com"
-                    className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#1E3A8A] outline-none transition"
+                    className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#0D1B4C] outline-none transition"
                     required
                   />
                 </div>
@@ -152,7 +156,7 @@ export default function Contact() {
                     name="message"
                     placeholder="Write your message..."
                     rows={5}
-                    className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#1E3A8A] outline-none transition resize-none"
+                    className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#0D1B4C] outline-none transition resize-none"
                     required
                   ></textarea>
                 </div>
@@ -162,7 +166,7 @@ export default function Contact() {
                   disabled={status === "sending"}
                   className={`w-full py-3 rounded-xl font-semibold text-white flex items-center justify-center gap-2 transition-all shadow-md ${status === "sending"
                     ? "bg-gray-400 cursor-not-allowed"
-                    : "bg-[#1E3A8A] hover:bg-[#1E40AF] hover:shadow-lg hover:scale-[1.02]"
+                    : "bg-[#0D1B4C] hover:bg-[#142E6E] hover:shadow-lg hover:scale-[1.02]"
                     }`}
                 >
                   {status === "sending" ? (
@@ -174,12 +178,6 @@ export default function Contact() {
                     </>
                   )}
                 </button>
-
-                {status === "error" && (
-                  <p className="text-red-500 text-center mt-4">
-                    Something went wrong. Please try again.
-                  </p>
-                )}
               </form>
             )}
           </div>

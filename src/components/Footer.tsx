@@ -28,11 +28,13 @@ export default function Footer() {
       {/* ===== Footer Content Grid ===== */}    <div className="relative z-10 max-w-7xl mx-auto px-6 grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 gap-12">     {/* ===== Logo + About ===== */}
         <div className="col-span-2">
           <a href="/" className="flex items-center mb-4">
-            <img
-              src="/white.png"
-              alt="BardNative Logo"
-              className="w-20 h-20 md:w-24 md:h-24 object-contain transition-transform duration-300 hover:scale-105"
-            />
+            <a href="/" className="flex items-center mb-4">
+              <img
+                src="/white.png"
+                alt="BardNative Logo"
+                className="w-30 h-30 md:w-28 md:h-28 object-contain transition-transform duration-300 hover:scale-105"
+              />
+            </a>
           </a>
           <p className="text-sm text-gray-400 leading-relaxed max-w-md">
             AI-driven monetization that empowers publishers with smarter ad

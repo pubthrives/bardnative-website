@@ -13,7 +13,6 @@ import Contact from "./components/Contact";
 import AboutUs from "./components/AboutUs";
 import Affiliate from "./components/Affiliate";
 import NotFound from "./components/NotFound"; // ✅ added
-
 export default function App() {
   return (
     <Router>
