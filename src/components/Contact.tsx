@@ -69,7 +69,7 @@ export default function Contact() {
                     Get instant support 24/7.
                   </p>
                   <a
-                    href="https://wa.me/923093797625"
+                    href="https://wa.me/+447473903586"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-green-600 font-medium hover:underline"
@@ -160,11 +160,10 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={status === "sending"}
-                  className={`w-full py-3 rounded-xl font-semibold text-white flex items-center justify-center gap-2 transition-all shadow-md ${
-                    status === "sending"
-                      ? "bg-gray-400 cursor-not-allowed"
-                      : "bg-[#1E3A8A] hover:bg-[#1E40AF] hover:shadow-lg hover:scale-[1.02]"
-                  }`}
+                  className={`w-full py-3 rounded-xl font-semibold text-white flex items-center justify-center gap-2 transition-all shadow-md ${status === "sending"
+                    ? "bg-gray-400 cursor-not-allowed"
+                    : "bg-[#1E3A8A] hover:bg-[#1E40AF] hover:shadow-lg hover:scale-[1.02]"
+                    }`}
                 >
                   {status === "sending" ? (
                     <span>Sending...</span>
