@@ -32,7 +32,7 @@ export default function Footer() {
               <img
                 src="/white.png"
                 alt="BardNative Logo"
-                className="w-30 h-30 md:w-28 md:h-28 object-contain transition-transform duration-300 hover:scale-105"
+                className="w-23 h-23 md:w-23 md:h-20 object-contain transition-transform duration-300 hover:scale-105"
               />
             </a>
           </a>
