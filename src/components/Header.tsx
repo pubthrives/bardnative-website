@@ -93,10 +93,7 @@ export default function Header() {
               className="relative group px-4 py-2 rounded-lg transition-all duration-300 hover:text-[#0D1B4C] hover:bg-gray-100/60 active:scale-[0.97]"
             >
               <span>{item.label}</span>
-              <span
-                className="absolute inset-0 rounded-lg bg-gray-100/60 opacity-0 scale-90 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-out"
-                aria-hidden="true"
-              ></span>
+
             </a>
           ))}
         </nav>

@@ -53,28 +53,30 @@ export default function Affiliate() {
     <div className="font-sans text-gray-900 bg-gradient-to-b from-white via-gray-50 to-gray-100 min-h-screen flex flex-col">
       <Header />
 
-      {/* ===== HERO ===== */}
-      <section className="relative pt-28 pb-32 text-center overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(13,27,76,0.08),transparent_70%)]" />
+      {/* ===== HERO SECTION ===== */}
+      <section className="relative pt-28 pb-10 text-center overflow-hidden">
+        {/* Subtle Glow */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(13,27,76,0.08),transparent_70%)]"></div>
+
         <div className="relative z-10 max-w-4xl mx-auto px-6">
           <span className="px-4 py-1 rounded-full text-sm font-medium bg-[#0D1B4C]/10 text-[#0D1B4C]">
             BardNative Partners
           </span>
 
-          <h1 className="text-5xl md:text-6xl font-extrabold mt-6 mb-6 leading-tight">
+          <h1 className="text-5xl md:text-6xl font-extrabold mt-6 mb-4 leading-tight">
             Grow your revenue with{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0D1B4C] to-[#142E6E]">
               partnerships
             </span>
           </h1>
 
-          <p className="text-gray-600 text-lg mb-10 max-w-2xl mx-auto">
+          <p className="text-gray-600 text-lg mb-8 max-w-2xl mx-auto">
             Join the BardNative Affiliate Program — partner with publishers,
             agencies, and creators to drive smarter monetization with
             transparency, data ownership, and performance.
           </p>
 
-          <div className="flex justify-center gap-4">
+          <div className="flex justify-center gap-4 flex-wrap">
             <a
               href="#apply"
               className="px-8 py-3 rounded-full bg-[#0D1B4C] text-white font-semibold shadow-md hover:scale-105 transition-all"
@@ -92,7 +94,7 @@ export default function Affiliate() {
       </section>
 
       {/* ===== REVENUE SECTION ===== */}
-      <section className="py-20 border-t border-gray-100 bg-gradient-to-b from-white via-gray-50 to-gray-100">
+      <section className="py-16 border-t border-gray-100 bg-gradient-to-b from-white via-gray-50 to-gray-100">
         <div className="max-w-6xl mx-auto text-center px-6">
           <h2 className="text-4xl font-extrabold mb-4 text-gray-900">
             Revenue on{" "}
@@ -100,7 +102,7 @@ export default function Affiliate() {
               autopilot
             </span>
           </h2>
-          <p className="text-gray-600 text-lg mb-14 max-w-2xl mx-auto">
+          <p className="text-gray-600 text-lg mb-12 max-w-2xl mx-auto">
             Scale your partner-driven revenue with transparent rewards,
             real-time tracking, and AI optimization — built for modern publishers.
           </p>

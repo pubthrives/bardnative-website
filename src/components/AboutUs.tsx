@@ -17,14 +17,14 @@ const TEAM = [
     role: "CEO & Co-Founder",
     image: "/arslan.png",
     linkedin: "https://www.linkedin.com/in/mehdiarslan?",
-    facebook: "https://www.facebook.com/realarslanmehdi", // ✅ New Facebook link
+    facebook: "https://www.facebook.com/realarslanmehdi",
   },
   {
     name: "Arman Rajpot",
     role: "Co-Founder",
     image: "/arman.png",
-    whatsapp: "https://wa.me/+923267376967", // ✅ WhatsApp
-    facebook: "https://www.facebook.com/arman.rajput.769232", // ✅ Replaces LinkedIn
+    whatsapp: "https://wa.me/+923267376967",
+    facebook: "https://www.facebook.com/arman.rajput.769232",
   },
   {
     name: "Saqlen Mehdi",
@@ -38,7 +38,7 @@ const TEAM = [
     role: "AdOps Assistant",
     image: "/adnan.png",
     linkedin: "https://www.linkedin.com/in/mehdi-adnan/",
-    facebook: "/", // ✅ Replaces GitHub
+    facebook: "/",
   },
 ];
 
@@ -48,22 +48,23 @@ export default function AboutUs() {
       <Header />
 
       {/* ==== OUR MISSION ==== */}
-      <section className="relative overflow-hidden text-center py-28 px-6">
+      <section className="relative overflow-hidden text-center pt-24 pb-16 md:pt-28 md:pb-20 px-6">
+        {/* Glows */}
         <div className="absolute top-0 left-0 w-[700px] h-[700px] bg-[#0D1B4C]/15 rounded-full blur-[120px] opacity-40"></div>
         <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-[#0D1B4C]/10 rounded-full blur-[140px] opacity-30"></div>
 
         <div className="relative z-10 max-w-4xl mx-auto">
-          <div className="flex justify-center mb-8">
+          <div className="flex justify-center mb-6 md:mb-8">
             <div className="bg-[#0D1B4C]/10 p-4 rounded-2xl shadow-inner backdrop-blur-sm">
               <Target className="w-10 h-10 text-[#0D1B4C]" />
             </div>
           </div>
 
-          <h1 className="text-6xl md:text-7xl font-extrabold mb-6 tracking-tight bg-gradient-to-r from-[#0D1B4C] via-[#142E6E] to-[#0D1B4C] text-transparent bg-clip-text">
+          <h1 className="text-5xl md:text-6xl font-extrabold mb-5 tracking-tight bg-gradient-to-r from-[#0D1B4C] via-[#142E6E] to-[#0D1B4C] text-transparent bg-clip-text">
             Our Mission
           </h1>
 
-          <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto mb-8">
             To help publishers maximize revenue with{" "}
             <span className="font-semibold text-gray-900">transparency</span>,{" "}
             <span className="font-semibold text-gray-900">innovation</span>, and{" "}
@@ -73,8 +74,8 @@ export default function AboutUs() {
             — built on trust, data, and real results.
           </p>
 
-          <div className="flex justify-center mt-10">
-            <div className="px-6 py-3 rounded-full bg-[#0D1B4C] text-white font-semibold shadow-lg hover:shadow-xl hover:scale-99 transition-all duration-300 flex items-center gap-2">
+          <div className="flex justify-center">
+            <div className="px-6 py-3 rounded-full bg-[#0D1B4C] text-white font-semibold shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300 flex items-center gap-2">
               <Sparkles className="w-5 h-5" /> Empowering Publishers Everywhere
             </div>
           </div>
@@ -82,13 +83,13 @@ export default function AboutUs() {
       </section>
 
       {/* ==== OUR STORY ==== */}
-      <section className="relative py-24 px-6 border-t border-gray-100 bg-white overflow-hidden">
+      <section className="relative py-20 md:py-24 px-6 border-t border-gray-100 bg-white overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(13,27,76,0.06),transparent_70%)]"></div>
 
-        <div className="relative z-10 max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center">
+        <div className="relative z-10 max-w-7xl mx-auto grid md:grid-cols-2 gap-14 md:gap-20 items-center">
           {/* IMAGE */}
           <div className="relative order-2 md:order-1">
-            <div className="absolute -inset-8 bg-[#0D1B4C]/10 rounded-[2.5rem] blur-3xl opacity-60"></div>
+            <div className="absolute -inset-6 md:-inset-8 bg-[#0D1B4C]/10 rounded-[2.5rem] blur-3xl opacity-60"></div>
             <img
               src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
               alt="BardNative Office"
@@ -98,25 +99,25 @@ export default function AboutUs() {
 
           {/* TEXT */}
           <div className="order-1 md:order-2">
-            <h2 className="text-5xl font-extrabold mb-6 text-[#0D1B4C] leading-tight">
+            <h2 className="text-4xl md:text-5xl font-extrabold mb-6 text-[#0D1B4C] leading-tight">
               The BardNative Story
             </h2>
 
-            <p className="text-gray-600 text-lg leading-relaxed mb-5">
+            <p className="text-gray-600 text-base md:text-lg leading-relaxed mb-5">
               <strong>BardNative was founded with a simple vision:</strong> to
               redefine digital ad monetization for modern publishers. While
               others focused on scale, we focused on clarity — combining
               automation, transparency, and data ownership for every partner.
             </p>
 
-            <p className="text-gray-600 text-lg leading-relaxed mb-5">
+            <p className="text-gray-600 text-base md:text-lg leading-relaxed mb-5">
               From humble beginnings, BardNative quickly became a trusted ally
-              for content creators, media brands, and niche publishers globally
-              — helping them unlock new revenue opportunities while maintaining
+              for content creators, media brands, and niche publishers globally —
+              helping them unlock new revenue opportunities while maintaining
               exceptional user experience.
             </p>
 
-            <p className="text-gray-600 text-lg leading-relaxed">
+            <p className="text-gray-600 text-base md:text-lg leading-relaxed">
               Today, we empower hundreds of publishers with{" "}
               <span className="text-[#0D1B4C] font-medium">
                 AI optimization
@@ -140,9 +141,9 @@ export default function AboutUs() {
       </section>
 
       {/* ==== OUR VALUES ==== */}
-      <section className="py-24 bg-gradient-to-b from-gray-50 to-white border-t border-gray-100">
+      <section className="py-20 md:py-24 bg-gradient-to-b from-gray-50 to-white border-t border-gray-100">
         <div className="max-w-6xl mx-auto text-center px-6">
-          <h2 className="text-4xl font-bold mb-14 text-gray-900">
+          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-gray-900">
             What We <span className="text-[#0D1B4C]">Stand For</span>
           </h2>
 
@@ -171,7 +172,7 @@ export default function AboutUs() {
                 <div className="bg-[#0D1B4C]/10 p-3 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-5">
                   {item.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-3 text-gray-900">
+                <h3 className="text-lg md:text-xl font-semibold mb-3 text-gray-900">
                   {item.title}
                 </h3>
                 <p className="text-gray-600 leading-relaxed">{item.desc}</p>
@@ -184,7 +185,7 @@ export default function AboutUs() {
       {/* ==== OUR TEAM ==== */}
       <section
         id="team"
-        className="relative py-24 border-t border-gray-200 bg-white text-center overflow-hidden"
+        className="relative py-20 md:py-24 border-t border-gray-200 bg-white text-center overflow-hidden"
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_center,rgba(13,27,76,0.05),transparent_70%)]"></div>
 
@@ -192,10 +193,10 @@ export default function AboutUs() {
           <p className="text-sm font-medium text-[#0D1B4C] mb-2">
             👥 Our People
           </p>
-          <h2 className="text-4xl font-bold mb-4 text-gray-900">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
             Built by people who believe in better publishing.
           </h2>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto mb-16">
+          <p className="text-gray-600 text-base md:text-lg max-w-2xl mx-auto mb-16">
             BardNative is a close-knit, globally connected team driven by
             transparency, innovation, and a shared mission to reshape ad
             monetization.
@@ -219,7 +220,6 @@ export default function AboutUs() {
                 </h3>
                 <p className="text-gray-600 text-sm mb-4">{member.role}</p>
 
-                {/* ICONS */}
                 <div className="flex items-center justify-center gap-4 text-gray-400">
                   {member.name === "Arslan Mehdi" ? (
                     <>

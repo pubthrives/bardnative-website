@@ -1,5 +1,5 @@
 import { ArrowRight, BarChart3, Rocket, Shield } from "lucide-react";
-import { motion } from "framer-motion"; // ✅ Run: npm install framer-motion
+import { motion } from "framer-motion";
 
 export default function Hero() {
   const stats = [
@@ -9,7 +9,7 @@ export default function Hero() {
   ];
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-white via-gray-50 to-gray-100 py-32 flex items-center justify-center text-center text-gray-900">
+    <section className="relative overflow-hidden bg-gradient-to-b from-white via-gray-50 to-gray-100 pt-32 pb-12 flex items-center justify-center text-center text-gray-900">
       {/* ===== Light Grid Background ===== */}
       <div
         className="absolute inset-0 bg-[linear-gradient(to_right,rgba(13,27,76,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(13,27,76,0.05)_1px,transparent_1px)] bg-[size:48px_48px]"
@@ -51,7 +51,7 @@ export default function Hero() {
         </p>
 
         {/* ===== CTA Buttons ===== */}
-        <div className="flex flex-wrap justify-center gap-4">
+        <div className="flex flex-wrap justify-center gap-4 mb-10">
           <a
             href="/start"
             className="px-8 py-3 rounded-full bg-[#0D1B4C] text-white font-semibold shadow-md hover:scale-105 transition-all flex items-center gap-2"
@@ -66,27 +66,21 @@ export default function Hero() {
           </a>
         </div>
 
-        {/* ===== Enhanced Metrics Cards ===== */}
-        <div className="mt-16 max-w-4xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-3 gap-5 md:gap-6">
+        {/* ===== Stats Cards ===== */}
+        <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
           {stats.map((stat, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: i * 0.15 }}
+              transition={{ duration: 0.4, delay: i * 0.1 }}
               viewport={{ once: true }}
-              className="bg-gradient-to-br from-white/80 via-gray-50/70 to-gray-100/70 
-                         backdrop-blur-md border border-gray-200/60 
-                         shadow-[0_4px_12px_rgba(0,0,0,0.05)] 
-                         rounded-2xl py-6 px-4 flex flex-col items-center justify-center 
-                         transition-all duration-300 hover:shadow-[0_6px_18px_rgba(0,0,0,0.08)] hover:-translate-y-1"
+              className="bg-gradient-to-br from-white/90 via-gray-50/80 to-gray-100/70 backdrop-blur-sm border border-gray-200/60 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300"
             >
-              <h3 className="text-3xl sm:text-2xl md:text-3xl font-extrabold text-[#0D1B4C] mb-2">
+              <h3 className="text-2xl font-bold text-[#0D1B4C] mb-1">
                 {stat.value}
               </h3>
-              <p className="text-gray-600 text-sm sm:text-base font-medium leading-snug">
-                {stat.label}
-              </p>
+              <p className="text-gray-600 text-sm">{stat.label}</p>
             </motion.div>
           ))}
         </div>
