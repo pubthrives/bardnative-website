@@ -1,6 +1,13 @@
 import { ArrowRight, BarChart3, Rocket, Shield } from "lucide-react";
+import { motion } from "framer-motion"; // ✅ Run: npm install framer-motion
 
 export default function Hero() {
+  const stats = [
+    { value: "+35%", label: "Average CPM Uplift" },
+    { value: "95%+", label: "Global Fill Rate" },
+    { value: "<150ms", label: "Ad Latency" },
+  ];
+
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-white via-gray-50 to-gray-100 py-32 flex items-center justify-center text-center text-gray-900">
       {/* ===== Light Grid Background ===== */}
@@ -43,7 +50,7 @@ export default function Hero() {
           insights, and real-time optimization — built on Google Ad Manager.
         </p>
 
-        {/* ===== CTA Buttons (from Affiliate) ===== */}
+        {/* ===== CTA Buttons ===== */}
         <div className="flex flex-wrap justify-center gap-4">
           <a
             href="/start"
@@ -59,20 +66,29 @@ export default function Hero() {
           </a>
         </div>
 
-        {/* ===== Stats Card ===== */}
-        <div className="mt-16 bg-white border border-gray-200 shadow-md rounded-2xl max-w-3xl mx-auto grid grid-cols-3 divide-x divide-gray-100">
-          <div className="p-6">
-            <h3 className="text-2xl font-bold text-[#0D1B4C]">+35%</h3>
-            <p className="text-gray-600 text-sm mt-1">Average CPM Uplift</p>
-          </div>
-          <div className="p-6">
-            <h3 className="text-2xl font-bold text-[#0D1B4C]">95%+</h3>
-            <p className="text-gray-600 text-sm mt-1">Global Fill Rate</p>
-          </div>
-          <div className="p-6">
-            <h3 className="text-2xl font-bold text-[#0D1B4C]">&lt;150ms</h3>
-            <p className="text-gray-600 text-sm mt-1">Ad Latency</p>
-          </div>
+        {/* ===== Enhanced Metrics Cards ===== */}
+        <div className="mt-16 max-w-4xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-3 gap-5 md:gap-6">
+          {stats.map((stat, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: i * 0.15 }}
+              viewport={{ once: true }}
+              className="bg-gradient-to-br from-white/80 via-gray-50/70 to-gray-100/70 
+                         backdrop-blur-md border border-gray-200/60 
+                         shadow-[0_4px_12px_rgba(0,0,0,0.05)] 
+                         rounded-2xl py-6 px-4 flex flex-col items-center justify-center 
+                         transition-all duration-300 hover:shadow-[0_6px_18px_rgba(0,0,0,0.08)] hover:-translate-y-1"
+            >
+              <h3 className="text-3xl sm:text-2xl md:text-3xl font-extrabold text-[#0D1B4C] mb-2">
+                {stat.value}
+              </h3>
+              <p className="text-gray-600 text-sm sm:text-base font-medium leading-snug">
+                {stat.label}
+              </p>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
