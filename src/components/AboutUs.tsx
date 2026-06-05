@@ -240,14 +240,7 @@ export default function AboutUs() {
                     </>
                   ) : member.name === "Arman Rajpot" ? (
                     <>
-                      <a
-                        href={member.whatsapp}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:text-[#0D1B4C] transition-colors"
-                      >
-                        <MessageCircle className="w-5 h-5" />
-                      </a>
+
                       <a
                         href={member.facebook}
                         target="_blank"
