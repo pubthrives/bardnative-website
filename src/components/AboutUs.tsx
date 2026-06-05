@@ -9,9 +9,33 @@ import {
   Sparkles,
   Facebook,
   MessageCircle,
+  type LucideIcon,
 } from "lucide-react";
 
-const TEAM = [
+// ---- Types ----------------------------------------------------------------
+
+interface TeamMember {
+  name: string;
+  role: string;
+  image: string;
+  linkedin?: string;
+  github?: string;
+  facebook?: string;
+  whatsapp?: string;
+}
+
+type SocialKey = "linkedin" | "github" | "facebook" | "whatsapp";
+
+const SOCIAL_LINKS: { key: SocialKey; Icon: LucideIcon; label: string }[] = [
+  { key: "linkedin", Icon: Linkedin, label: "LinkedIn" },
+  { key: "github", Icon: Github, label: "GitHub" },
+  { key: "facebook", Icon: Facebook, label: "Facebook" },
+  { key: "whatsapp", Icon: MessageCircle, label: "WhatsApp" },
+];
+
+// ---- Data -----------------------------------------------------------------
+
+const TEAM: TeamMember[] = [
   {
     name: "Arman Rajpot",
     role: "Founder & CEO",
@@ -39,6 +63,8 @@ const TEAM = [
     linkedin: "https://www.linkedin.com/in/mehdi-adnan/",
   },
 ];
+
+// ---- Component -------------------------------------------------------------
 
 export default function AboutUs() {
   return (
@@ -219,76 +245,23 @@ export default function AboutUs() {
                 <p className="text-gray-600 text-sm mb-4">{member.role}</p>
 
                 <div className="flex items-center justify-center gap-4 text-gray-400">
-                  {member.name === "Arslan Mehdi" ? (
-                    <>
-                      <a
-                        href={member.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:text-[#0D1B4C] transition-colors"
-                      >
-                        <Linkedin className="w-5 h-5" />
-                      </a>
-                      <a
-                        href={member.facebook}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:text-[#0D1B4C] transition-colors"
-                      >
-                        <Facebook className="w-5 h-5" />
-                      </a>
-                    </>
-                  ) : member.name === "Arman Rajpot" ? (
-                    <>
+                  {SOCIAL_LINKS.map(({ key, Icon, label }) => {
+                    const href = member[key];
+                    if (!href) return null;
 
+                    return (
                       <a
-                        href={member.facebook}
+                        key={key}
+                        href={href}
                         target="_blank"
                         rel="noopener noreferrer"
+                        aria-label={`${member.name} on ${label}`}
                         className="hover:text-[#0D1B4C] transition-colors"
                       >
-                        <Facebook className="w-5 h-5" />
+                        <Icon className="w-5 h-5" />
                       </a>
-                    </>
-                  ) : member.name === "Adnan Mehdi" ? (
-                    <>
-                      <a
-                        href={member.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:text-[#0D1B4C] transition-colors"
-                      >
-                        <Linkedin className="w-5 h-5" />
-                      </a>
-                      <a
-                        href={member.facebook}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:text-[#0D1B4C] transition-colors"
-                      >
-                        <Facebook className="w-5 h-5" />
-                      </a>
-                    </>
-                  ) : (
-                    <>
-                      <a
-                        href={member.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:text-[#0D1B4C] transition-colors"
-                      >
-                        <Linkedin className="w-5 h-5" />
-                      </a>
-                      <a
-                        href={member.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:text-[#0D1B4C] transition-colors"
-                      >
-                        <Github className="w-5 h-5" />
-                      </a>
-                    </>
-                  )}
+                    );
+                  })}
                 </div>
               </div>
             ))}
