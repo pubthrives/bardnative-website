@@ -1,84 +1,58 @@
-import { Clock, TrendingUp, Wallet } from "lucide-react";
+import { Zap, BrainCircuit, Wallet } from "lucide-react";
+import { Reveal, SectionHeading } from "./ui";
+
+const pillars = [
+  {
+    icon: Zap,
+    title: "Live in minutes",
+    desc: "A single tag connects your inventory to premium demand. Streamlined AdX and GAM onboarding, no engineering sprint required.",
+    accent: "from-signal/25",
+  },
+  {
+    icon: BrainCircuit,
+    title: "AI yield optimization",
+    desc: "Price floors, demand routing, and ad density are tuned per impression, so every request clears at the highest viable CPM.",
+    accent: "from-violet/25",
+  },
+  {
+    icon: Wallet,
+    title: "Transparent payouts",
+    desc: "Guaranteed NET-45 by bank or crypto, reconciled against the same impression-level numbers you see in your dashboard.",
+    accent: "from-mint/25",
+  },
+];
 
 export default function Advantages() {
   return (
-    <section className="relative overflow-hidden py-28 bg-gradient-to-b from-white via-gray-50 to-gray-100 text-gray-900">
-      {/* ===== Soft Gradient Background Glow ===== */}
-      <div className="absolute inset-0">
-        <div className="absolute -top-32 left-1/3 w-[600px] h-[600px] bg-[#0D1B4C]/10 blur-[160px] rounded-full"></div>
-        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-[#142E6E]/10 blur-[180px] rounded-full"></div>
-      </div>
+    <section id="platform" className="relative py-20 sm:py-28">
+      <div className="container-bn">
+        <SectionHeading
+          eyebrow="// THE PLATFORM"
+          title={
+            <>
+              Built to grow yield, <span className="gradient-text">not guesswork</span>
+            </>
+          }
+          lead="Automation, intelligence, and transparency working on every impression — so you scale faster and keep control of your stack."
+        />
 
-      {/* ===== Content Container ===== */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
-        <h2 className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight">
-          Powering the Future of{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0D1B4C] to-[#142E6E]">
-            Monetization
-          </span>
-        </h2>
-        <p className="text-gray-600 text-lg md:text-xl max-w-3xl mx-auto mb-20">
-          BardNative empowers publishers with automation, AI insights, and full
-          transparency — helping you grow smarter, faster, and with more control.
-        </p>
-
-        {/* ===== Advantage Cards ===== */}
-        <div className="grid md:grid-cols-3 gap-10">
-          {/* Card 1 */}
-          <div className="group relative bg-white border border-gray-100 rounded-3xl p-10 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
-            <div className="flex justify-center mb-6">
-              <div className="p-4 rounded-2xl bg-[#0D1B4C]/10 group-hover:bg-[#0D1B4C]/20 transition">
-                <Clock size={48} className="text-[#0D1B4C]" />
-              </div>
-            </div>
-            <h3 className="text-2xl font-semibold mb-3 text-gray-900">
-              Instant Setup
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              Integrate BardNative in minutes — optimized AdX setup and faster
-              onboarding built for modern publishers.
-            </p>
-            <div className="absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-transparent via-[#0D1B4C]/40 to-transparent opacity-0 group-hover:opacity-100 transition-all"></div>
-          </div>
-
-          {/* Card 2 */}
-          <div className="group relative bg-white border border-gray-100 rounded-3xl p-10 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
-            <div className="flex justify-center mb-6">
-              <div className="p-4 rounded-2xl bg-[#142E6E]/10 group-hover:bg-[#142E6E]/20 transition">
-                <TrendingUp size={48} className="text-[#142E6E]" />
-              </div>
-            </div>
-            <h3 className="text-2xl font-semibold mb-3 text-gray-900">
-              AI Optimization
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              Our adaptive AI maximizes fill rate, CPMs, and ad quality — ensuring
-              real-time optimization for every impression.
-            </p>
-            <div className="absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-transparent via-[#142E6E]/40 to-transparent opacity-0 group-hover:opacity-100 transition-all"></div>
-          </div>
-
-          {/* Card 3 */}
-          <div className="group relative bg-white border border-gray-100 rounded-3xl p-10 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
-            <div className="flex justify-center mb-6">
-              <div className="p-4 rounded-2xl bg-[#0D1B4C]/10 group-hover:bg-[#0D1B4C]/20 transition">
-                <Wallet size={48} className="text-[#0D1B4C]" />
-              </div>
-            </div>
-            <h3 className="text-2xl font-semibold mb-3 text-gray-900">
-              Transparent Payments
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              Guaranteed NET-45 payments through bank or crypto — reliable,
-              fast, and fully transparent.
-            </p>
-            <div className="absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-transparent via-[#0D1B4C]/40 to-transparent opacity-0 group-hover:opacity-100 transition-all"></div>
-          </div>
-        </div>
-
-        {/* ===== Tagline ===== */}
-        <div className="mt-20 text-gray-500 text-sm uppercase tracking-widest">
-          Trusted • Transparent • Transformative
+        <div className="mt-14 grid gap-6 md:grid-cols-3">
+          {pillars.map((p, i) => {
+            const Icon = p.icon;
+            return (
+              <Reveal key={p.title} delay={i * 0.08}>
+                <div className="card-grad group h-full p-8 transition-transform duration-300 hover:-translate-y-1">
+                  <div
+                    className={`mb-6 grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-br ${p.accent} to-transparent ring-1 ring-white/10`}
+                  >
+                    <Icon className="h-6 w-6 text-ice" />
+                  </div>
+                  <h3 className="font-display text-xl font-semibold text-white">{p.title}</h3>
+                  <p className="mt-3 leading-relaxed text-mute">{p.desc}</p>
+                </div>
+              </Reveal>
+            );
+          })}
         </div>
       </div>
     </section>

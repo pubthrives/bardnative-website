@@ -1,8 +1,15 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
+import { useEffect } from "react";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
-import Advantages from "./components/Advantages";
 import Stats from "./components/Stats";
+import Advantages from "./components/Advantages";
+import HowItWorks from "./components/HowItWorks";
 import Features from "./components/Features";
 import WhyUs from "./components/WhyUs";
 import Partners from "./components/Partners";
@@ -12,53 +19,65 @@ import StartMonetization from "./components/StartMonetization";
 import Contact from "./components/Contact";
 import AboutUs from "./components/AboutUs";
 import Affiliate from "./components/Affiliate";
-import NotFound from "./components/NotFound"; // ✅ added
+import NotFound from "./components/NotFound";
+
+/* Reset scroll on every route change */
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }, [pathname]);
+  return null;
+}
+
+/* Ambient instrument-panel background — fixed behind all content */
+function Backdrop() {
+  return (
+    <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+      <div className="absolute inset-0 bg-ink" />
+      <div className="absolute inset-0 bg-radial-fade" />
+      <div className="absolute -top-1/3 left-1/2 h-[820px] w-[820px] -translate-x-1/2 rounded-full bg-signal/20 blur-[150px] animate-mesh-drift" />
+      <div className="absolute top-1/3 -left-40 h-[620px] w-[620px] rounded-full bg-violet/15 blur-[150px] animate-mesh-drift [animation-delay:-8s]" />
+      <div className="absolute bottom-0 right-0 h-[560px] w-[560px] rounded-full bg-mint/10 blur-[160px] animate-mesh-drift [animation-delay:-14s]" />
+      <div className="absolute inset-0 bg-grid bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_85%)] animate-grid-pan opacity-70" />
+      <div className="noise absolute inset-0 opacity-[0.05] mix-blend-soft-light" />
+    </div>
+  );
+}
+
 export default function App() {
   return (
     <Router>
-      <div className="relative font-sans text-gray-900 bg-white min-h-screen overflow-hidden">
-        {/* 🧩 Subtle animated grid background */}
-        <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,rgba(99,102,241,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(99,102,241,0.05)_1px,transparent_1px)] bg-[size:60px_60px] animate-grid-move" />
-
-        {/* Optional soft color glow overlay (makes it slightly more dynamic) */}
-        <div className="absolute inset-0 -z-20 bg-gradient-to-br from-white via-gray-50 to-indigo-50 opacity-80" />
-
-        {/* Header - always visible */}
+      <ScrollToTop />
+      <div className="relative min-h-screen font-sans text-ice antialiased">
+        <Backdrop />
         <Header />
 
-        {/* Main Content Routes */}
-        <Routes>
-          <Route path="/affiliate" element={<Affiliate />} />
-          {/* 🏠 Home Page */}
-          <Route
-            path="/"
-            element={
-              <>
-                <Hero />
-                <Advantages />
-                <Stats />
-                <Features />
-                <WhyUs />
-                <Partners />
-                <CTA />
-              </>
-            }
-          />
+        <main>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <Hero />
+                  <Stats />
+                  <Advantages />
+                  <HowItWorks />
+                  <Features />
+                  <WhyUs />
+                  <Partners />
+                  <CTA />
+                </>
+              }
+            />
+            <Route path="/start" element={<StartMonetization />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/affiliate" element={<Affiliate />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
 
-          {/* 🚀 Start Monetization Page */}
-          <Route path="/start" element={<StartMonetization />} />
-
-          {/* ✉️ Contact Page */}
-          <Route path="/contact" element={<Contact />} />
-
-          {/* 🧭 About Us Page */}
-          <Route path="/about" element={<AboutUs />} />
-
-          {/* ⚠️ 404 Page */}
-          <Route path="*" element={<NotFound />} /> {/* ✅ added */}
-        </Routes>
-
-        {/* Footer - always visible */}
         <Footer />
       </div>
     </Router>

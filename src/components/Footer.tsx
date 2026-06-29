@@ -1,4 +1,5 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
+import { Linkedin, Facebook, Mail, MessageCircle, ArrowUpRight } from "lucide-react";
 import { scrollToSection } from "../util/scrollToSection";
 
 export default function Footer() {
@@ -6,124 +7,127 @@ export default function Footer() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Smooth scroll + redirect handler
-  const handleNavClick = (id: string) => {
+  const goAnchor = (id: string) => {
     if (location.pathname !== "/") {
       navigate("/");
-      setTimeout(() => scrollToSection(id), 400);
+      setTimeout(() => scrollToSection(id), 420);
     } else {
       scrollToSection(id);
     }
   };
 
   return (
-    <footer className="relative bg-[#0A0F1F] text-gray-300 pt-20 pb-10 overflow-hidden">
-      {/* ===== Decorative Grid Background ===== */}
-      <div
-        className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:50px_50px]"
-        aria-hidden="true"></div>
-      {/* ===== Soft Glow Accent ===== */}
-      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-gradient-to-tr from-[#1E3A8A]/40 via-blue-500/20 to-transparent blur-3xl rounded-full opacity-50"></div>
+    <footer className="relative mt-10 border-t border-white/10 bg-ink-900/70">
+      {/* gradient hairline */}
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-signal/40 to-transparent" />
 
-      {/* ===== Footer Content Grid ===== */}    <div className="relative z-10 max-w-7xl mx-auto px-6 grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 gap-12">     {/* ===== Logo + About ===== */}
-        <div className="col-span-2">
-          <a href="/" className="flex items-center mb-4">
-            <a href="/" className="flex items-center mb-4">
-              <img
-                src="/white.png"
-                alt="BardNative Logo"
-                className="w-23 h-23 md:w-23 md:h-20 object-contain transition-transform duration-300 hover:scale-105"
-              />
-            </a>
-          </a>
-          <p className="text-sm text-gray-400 leading-relaxed max-w-md">
-            AI-driven monetization that empowers publishers with smarter ad
-            delivery, transparent analytics, and premium demand — powered by
-            Google Ad Manager.
+      <div className="container-bn grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr]">
+        {/* brand */}
+        <div>
+          <Link to="/" className="inline-flex">
+            <img src="/white.png" alt="BardNative" className="h-9 w-auto object-contain" />
+          </Link>
+          <p className="mt-5 max-w-sm text-sm leading-relaxed text-mute">
+            Real-time ad yield for modern publishers. Premium demand, smarter
+            optimization, and reporting you can audit — built on Google Ad Manager.
           </p>
+
+          <div className="mt-6 flex flex-col gap-2 text-sm">
+            <a
+              href="mailto:adops@bardnative.com"
+              className="inline-flex w-fit items-center gap-2 text-ice-dim transition hover:text-white"
+            >
+              <Mail className="h-4 w-4 text-signal-400" /> adops@bardnative.com
+            </a>
+            <a
+              href="https://wa.me/447473903586"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex w-fit items-center gap-2 text-ice-dim transition hover:text-white"
+            >
+              <MessageCircle className="h-4 w-4 text-mint" /> WhatsApp support
+            </a>
+          </div>
+
+          <div className="mt-6 flex gap-2.5">
+            {[
+              { Icon: Linkedin, href: "https://www.linkedin.com/", label: "LinkedIn" },
+              { Icon: Facebook, href: "https://www.facebook.com/", label: "Facebook" },
+              { Icon: Mail, href: "mailto:adops@bardnative.com", label: "Email" },
+            ].map(({ Icon, href, label }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="grid h-9 w-9 place-items-center rounded-lg border border-white/10 bg-white/[0.03] text-mute transition hover:border-signal/40 hover:text-white"
+              >
+                <Icon className="h-4 w-4" />
+              </a>
+            ))}
+          </div>
         </div>
 
-        {/* ===== Company Links ===== */}
+        {/* product */}
         <div>
-          <h4 className="text-white font-semibold mb-4 text-lg tracking-wide">
-            Company
-          </h4>
-          <ul className="space-y-2 text-sm">
+          <h4 className="font-mono text-[11px] uppercase tracking-wider text-mute">Product</h4>
+          <ul className="mt-4 space-y-3 text-sm">
             <li>
-              <a
-                href="/about"
-                className="hover:text-gray-100 transition-colors duration-300">
-                About
-              </a>
-            </li>
-            <li>
-              <a
-                href="/#partners"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick("partners");
-                }}
-                className="hover:text-gray-100 transition-colors duration-300">
-                Partners
-              </a>
-            </li>
-            <li>
-              <a
-                href="/#solutions"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick("solutions");
-                }}
-                className="hover:text-gray-100 transition-colors duration-300">
+              <button onClick={() => goAnchor("solutions")} className="text-ice-dim transition hover:text-white">
                 Solutions
-              </a>
+              </button>
             </li>
             <li>
-              <a
-                href="/Affiliate"
-                className="hover:text-gray-100 transition-colors duration-300">
+              <button onClick={() => goAnchor("whyus")} className="text-ice-dim transition hover:text-white">
+                Why BardNative
+              </button>
+            </li>
+            <li>
+              <button onClick={() => goAnchor("partners")} className="text-ice-dim transition hover:text-white">
+                Integrations
+              </button>
+            </li>
+            <li>
+              <Link to="/affiliate" className="text-ice-dim transition hover:text-white">
                 Affiliate
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
 
-        {/* ===== Get Started ===== */}
+        {/* company */}
         <div>
-          <h4 className="text-white font-semibold mb-4 text-lg tracking-wide">
-            Get Started
-          </h4>
-          <ul className="space-y-2 text-sm">
+          <h4 className="font-mono text-[11px] uppercase tracking-wider text-mute">Company</h4>
+          <ul className="mt-4 space-y-3 text-sm">
             <li>
-              <a
-                href="/start"
-                className="hover:text-gray-100 transition-colors duration-300">
-                Start Monetization{" "}
-              </a>
+              <Link to="/about" className="text-ice-dim transition hover:text-white">
+                About
+              </Link>
             </li>
             <li>
-              <a
-                href="/contact"
-                className="hover:text-gray-100 transition-colors duration-300">
+              <Link to="/contact" className="text-ice-dim transition hover:text-white">
                 Contact
-              </a>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/start"
+                className="inline-flex items-center gap-1 text-ice-dim transition hover:text-white"
+              >
+                Start monetizing <ArrowUpRight className="h-3.5 w-3.5" />
+              </Link>
             </li>
           </ul>
         </div>
       </div>
 
-      {/* ===== Divider ===== */}
-      <div className="relative mt-16 mb-6">
-        <div className="h-px bg-gradient-to-r from-transparent via-gray-600/40 to-transparent"></div>
-      </div>
-
-      {/* ===== Bottom Text ===== */}
-      <div className="text-center text-sm text-gray-500">
-        © {year}{" "}
-        <span className="text-white font-medium hover:text-gray-100 transition-colors duration-300">
-          BardNative
-        </span>{" "}
-        — Empowering publishers through AI and transparency.
+      {/* bottom bar */}
+      <div className="border-t border-white/[0.06]">
+        <div className="container-bn flex flex-col items-center justify-between gap-3 py-6 text-xs text-mute sm:flex-row">
+          <p>© {year} BardNative. All rights reserved.</p>
+          <p className="font-mono">Empowering publishers through real-time yield.</p>
+        </div>
       </div>
     </footer>
   );

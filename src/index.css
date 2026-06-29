@@ -2,71 +2,184 @@
 @tailwind components;
 @tailwind utilities;
 
-/* === BardNative Custom Styles === */
+/* ============== BardNative — base ============== */
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #05070E;
+    color: #E9EEFB;
+    font-family: "Inter", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: rgba(91, 140, 255, 0.3);
+    color: #fff;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 11px;
+    height: 11px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #05070E;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1b2540;
+    border-radius: 999px;
+    border: 3px solid #05070E;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #29365b;
+  }
+
+  /* React-select dark theme overrides (Affiliate page) */
+  .rs__control {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+    border-radius: 0.85rem !important;
+    min-height: 50px !important;
+    box-shadow: none !important;
+  }
+  .rs__control--is-focused {
+    border-color: #5b8cff !important;
+    box-shadow: 0 0 0 3px rgba(91, 140, 255, 0.25) !important;
+  }
+  .rs__placeholder {
+    color: #8893ad !important;
+  }
+  .rs__input-container,
+  .rs__single-value {
+    color: #e9eefb !important;
+  }
+  .rs__menu {
+    background: #0a0e1c !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 0.85rem !important;
+    overflow: hidden;
+  }
+  .rs__option {
+    background: transparent !important;
+    color: #c3cbde !important;
+  }
+  .rs__option--is-focused {
+    background: rgba(91, 140, 255, 0.14) !important;
+    color: #fff !important;
+  }
+  .rs__multi-value {
+    background: rgba(91, 140, 255, 0.16) !important;
+    border-radius: 0.5rem !important;
+  }
+  .rs__multi-value__label {
+    color: #cdd9ff !important;
+  }
+  .rs__multi-value__remove:hover {
+    background: rgba(91, 140, 255, 0.4) !important;
+    color: #fff !important;
+  }
+  .rs__indicator-separator {
+    background: rgba(255, 255, 255, 0.12) !important;
+  }
+}
+
+/* ============== components / utilities ============== */
 @layer components {
-  .bn-container {
-    @apply max-w-6xl mx-auto px-4;
+  .container-bn {
+    @apply max-w-7xl mx-auto px-5 sm:px-8;
   }
 
-  .bn-btn {
-    @apply inline-block px-6 py-3 rounded-lg font-semibold transition;
+  .eyebrow {
+    @apply font-mono text-[11px] sm:text-xs uppercase tracking-eyebrow text-signal-400/90;
   }
 
-  .bn-btn-dark {
-    @apply bg-black text-white hover:bg-gray-800;
+  .gradient-text {
+    @apply text-transparent bg-clip-text bg-brand;
   }
 
-  .bn-btn-outline {
-    @apply border border-black text-black hover:bg-black hover:text-white;
+  /* Glass surface */
+  .glass {
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(14px);
+  }
+
+  /* Gradient hairline border card */
+  .card-grad {
+    position: relative;
+    border-radius: 1.25rem;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .card-grad::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(130deg, rgba(91, 140, 255, 0.55), rgba(154, 108, 255, 0.15) 40%, transparent 70%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.45s ease;
+    pointer-events: none;
+  }
+  .card-grad:hover::before {
+    opacity: 1;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white
+           bg-brand shadow-glow transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-ice
+           border border-white/10 bg-white/[0.02] transition-all duration-300 hover:bg-white/[0.06] hover:border-white/25;
+  }
+
+  .field {
+    @apply w-full rounded-xl bg-white/[0.03] border border-white/10 px-4 py-3 text-ice placeholder-mute/70
+           outline-none transition focus:border-signal focus:ring-2 focus:ring-signal/30;
+  }
+
+  .label {
+    @apply block text-sm font-medium mb-2 text-ice-dim;
   }
 }
 
-/* === Smooth Pulse Animation (for glowing backgrounds) === */
-@keyframes pulse-slow {
-  0%,
-  100% {
-    opacity: 0.4;
-  }
-  50% {
-    opacity: 0.7;
+/* Noise overlay */
+.noise {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
-.animate-pulse-slow {
-  animation: pulse-slow 6s ease-in-out infinite;
-}
-
-/* === Slow Rotating Animation for Globe === */
-@keyframes spin-slow {
+/* Seamless scrolling chart (Hero yield console) */
+@keyframes chart-scroll {
   from {
-    transform: rotate(0deg);
+    transform: translateX(0);
   }
   to {
-    transform: rotate(360deg);
+    transform: translateX(calc(-1 * var(--w, 520px)));
   }
-}
-
-@keyframes spin-slow {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-.animate-spin-slow {
-  animation: spin-slow 25s linear infinite;
-}
-
-@keyframes pulse-slow {
-  0%,
-  100% {
-    opacity: 0.4;
-  }
-  50% {
-    opacity: 0.7;
-  }
-}
-.animate-pulse-slow {
-  animation: pulse-slow 6s ease-in-out infinite;
 }
